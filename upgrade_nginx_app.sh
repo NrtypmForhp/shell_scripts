@@ -28,7 +28,8 @@ services:
     restart: always
     environment:
       - MONGO_URI=mongodb://mongodb_docker_container:27017/
-      - S3_ENDPOINT_URL=http://minio_docker_container:9000
+      - S3_ENDPOINT_URL=http://minio-docker-container:9000
+      - S3_EXTERNAL_URL=http://localhost:9000
     volumes:
       - ./bot_cache:/app/bot_cache
       - ./sessions:/app/sessions
@@ -70,7 +71,7 @@ ENV PATH="/home/tsync_docker/.local/bin:${PATH}"
 
 COPY . .
 
-RUN chown -R tsync_docker:tsync_docker /app
+RUN mkdir -p /app/sessions /app/bot_cache && chown -R tsync_docker:tsync_docker /app
 
 USER tsync_docker
 
@@ -172,6 +173,12 @@ else
   echo "Creating network '$NETWORK_NAME'..."
   docker network create "$NETWORK_NAME"
 fi
+
+# Ensure directories exist locally on the host
+mkdir -p ./sessions ./bot_cache
+
+# Fix ownership on host before mounting (UID 1000 corresponds to tsync_docker)
+sudo chown -R 1000:1000 ./sessions ./bot_cache
 
 docker compose up -d --force-recreate
 

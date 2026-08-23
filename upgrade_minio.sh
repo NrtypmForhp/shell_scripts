@@ -2,7 +2,7 @@
 
 set -e # Exit immediately if a command exits with a non-zero status
 NETWORK_NAME="docker_default"
-MINIO_CONTAINER_NAME="minio_docker_container"
+MINIO_CONTAINER_NAME="minio-docker-container"
 MINIO_CREATEBUCKETS_CONTAINER_NAME="minio_createbuckets_container"
 
 echo "-*-* Create docker compose yml file *-*-"
@@ -10,7 +10,7 @@ cat >docker-compose.yml <<EOL
 services:
   minio:
     image: minio/minio:latest
-    container_name: minio_docker_container
+    container_name: minio-docker-container
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: "minio_user"

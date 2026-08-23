@@ -18,7 +18,7 @@ rm -f -- Dockerfile
 rm -f -- nginx.conf
 rm -f -- requirements.txt
 
-echo "Create docker compose yml file"
+echo "-*-* Create docker compose yml file *-*-"
 cat >docker-compose.yml <<EOL
 services:
   tsync_app:
@@ -27,6 +27,8 @@ services:
     restart: always
     environment:
       - MONGO_URI=mongodb://mongodb_docker_container:27017/
+      - S3_ENDPOINT_URL=http://minio-docker-container:9000
+      - S3_EXTERNAL_URL=http://localhost:9000
     volumes:
       - ./bot_cache:/app/bot_cache
       - ./sessions:/app/sessions
@@ -68,7 +70,7 @@ ENV PATH="/home/tsync_docker/.local/bin:${PATH}"
 
 COPY . .
 
-RUN chown -R tsync_docker:tsync_docker /app
+RUN mkdir -p /app/sessions /app/bot_cache && chown -R tsync_docker:tsync_docker /app
 
 USER tsync_docker
 
