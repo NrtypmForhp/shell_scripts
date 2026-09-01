@@ -3,6 +3,8 @@
 set -e # Exit immediately if a command exits with a non-zero status
 FLASK_CONTAINER_NAME="tsync_flask"
 NGINX_PROXY_CONTAINER_NAME="nginx_proxy"
+NETWORK_NAME="docker_default"
+SERVER_IP=$(hostname -I | awk '{print $1}')
 
 read -p "Make sure you are placed (with cd commands) in the main directory with all the python, HTML, JS files!! Are you in the correct directory? (y/N): " confirm
 if [[ "$confirm" =~ ^[Yy]$ ]]; then
