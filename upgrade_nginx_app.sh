@@ -106,13 +106,15 @@ cat >requirements.txt <<EOL
 anyio>=4.14.2
 APScheduler>=3.11.3
 asgiref>=3.12.1
+beautifulsoup4>=4.15.0
 blinker>=1.9.0
-boto3>=1.43.74
-botocore>=1.43.74
-cachelib>=0.15.4
+boto3>=1.43.82
+botocore>=1.43.82
+cachelib>=0.17.0
 certifi>=2026.7.22
 charset-normalizer>=3.5.1
-click>=8.4.2
+click>=8.5.0
+deep-translator>=1.11.4
 Deprecated>=1.3.1
 dnspython>=2.8.0
 Flask>=3.1.3
@@ -120,7 +122,6 @@ Flask-APScheduler>=1.13.1
 Flask-Limiter>=4.1.1
 Flask-Session>=0.8.0
 Flask-WTF>=1.3.0
-googletrans>=4.0.2
 h11>=0.16.0
 h2>=4.4.1
 hpack>=4.2.0
@@ -134,6 +135,7 @@ jmespath>=1.1.0
 limits>=5.8.0
 MarkupSafe>=3.0.3
 msgspec>=0.21.1
+nodejs-wheel-binaries>=24.19.0
 ordered-set>=4.1.0
 packaging>=26.3
 pillow>=12.3.0
@@ -144,13 +146,13 @@ requests>=2.34.2
 s3transfer>=0.19.2
 six>=1.17.0
 sniffio>=1.3.1
+soupsieve>=2.9.2
 typing_extensions>=4.16.0
 tzlocal>=5.4.4
 urllib3>=2.7.0
 Werkzeug>=3.1.8
 wrapt>=2.3.0
 WTForms>=3.2.2
-gunicorn
 EOL
 
 read -p "Create a new container (y) or upgrade and backup the existing one (N)? (y/N): " confirm
