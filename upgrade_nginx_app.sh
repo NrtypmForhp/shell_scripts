@@ -4,6 +4,7 @@ set -e # Exit immediately if a command exits with a non-zero status
 FLASK_CONTAINER_NAME="tsync_flask"
 NGINX_PROXY_CONTAINER_NAME="nginx_proxy"
 NETWORK_NAME="docker_default"
+SERVER_IP=$(hostname -I | awk '{print $1}')
 
 read -p "Make sure you are placed (with cd commands) in the main directory with all the python, HTML, JS files!! Are you in the correct directory? (y/N): " confirm
 if [[ "$confirm" =~ ^[Yy]$ ]]; then
@@ -29,7 +30,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongodb_docker_container:27017/
       - S3_ENDPOINT_URL=http://minio-docker-container:9000
-      - S3_EXTERNAL_URL=http://localhost:9000
+      - S3_EXTERNAL_URL=http://${SERVER_IP}:9000
     volumes:
       - ./bot_cache:/app/bot_cache
       - ./sessions:/app/sessions
