@@ -153,6 +153,7 @@ urllib3>=2.7.0
 Werkzeug>=3.1.8
 wrapt>=2.3.0
 WTForms>=3.2.2
+gunicorn>=26.2.0
 EOL
 
 read -p "Create a new container (y) or upgrade and backup the existing one (N)? (y/N): " confirm
